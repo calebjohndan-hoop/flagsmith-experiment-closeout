@@ -2,7 +2,7 @@
 
 **An Agent Skill that finishes what an A/B test starts.** It reads a Flagsmith experiment's results, decides whether there's a real winner, ships it after explicit human approval, verifies the live flag, plans the cleanup, and writes a decision record your team can find later.
 
-Built for **WeMakeDevs Toggle Wars, Track 04: Flagsmith Agent Skills**.
+Built for **WeMakeDevs Toggle Wars: Flagsmith Agent Skills**.
 
 > Flagsmith's own agent prompt takes you from an idea to a *running* experiment. This skill covers the part after that, where teams usually lose time: reading the numbers correctly, deciding, rolling out, and deleting the flag before it becomes tech debt.
 
