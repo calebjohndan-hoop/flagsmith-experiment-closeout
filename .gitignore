@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.venv/
+.flagsmith-closeout/
+flagsmith.env
+.env
+# Binds this checkout to one person's Flagsmith project. Each user runs `flagsmith init` themselves.
+flagsmith.json
