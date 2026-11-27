@@ -1,5 +1,7 @@
 # flagsmith-experiment-closeout
 
+[![tests](https://github.com/calebjohndan-hoop/flagsmith-experiment-closeout/actions/workflows/test.yml/badge.svg)](https://github.com/calebjohndan-hoop/flagsmith-experiment-closeout/actions/workflows/test.yml)
+
 **An Agent Skill that finishes what an A/B test starts.** It reads a Flagsmith experiment's results, decides whether there's a real winner, ships it after explicit human approval, verifies the live flag, plans the cleanup, and writes a decision record your team can find later.
 
 Built for **WeMakeDevs Toggle Wars: Flagsmith Agent Skills**.
@@ -140,10 +142,10 @@ The simulator gives `urgent` a 12% purchase rate against 8% for control, so the 
 
 ```bash
 python -m unittest discover tests -v
-pip install skills-ref && skills-ref validate skills/flagsmith-experiment-closeout
+pip install skills-ref && agentskills validate skills/flagsmith-experiment-closeout
 ```
 
-40 offline tests (Windows, macOS and Linux) cover: winners, CI crossing zero, Flagsmith's SRM and the skill's own SRM fallback (balanced, broken, uneven splits, and the exact p-value), data floor, all losers, lower-is-better metrics, guardrails, quarantine warnings, every ship safety gate, verify against live weights, the cleanup plan (code search that skips prose and binary files), missing or null API fields, URL encoding, refresh throttling and non-ASCII text. The fake CLI replays the real figures from experiment #634.
+40 offline tests cover: winners, CI crossing zero, Flagsmith's SRM and the skill's own SRM fallback (balanced, broken, uneven splits, and the exact p-value), data floor, all losers, lower-is-better metrics, guardrails, quarantine warnings, every ship safety gate, verify against live weights, the cleanup plan (code search that skips prose and binary files), missing or null API fields, URL encoding, refresh throttling and non-ASCII text. The fake CLI replays the real figures from experiment #634. GitHub Actions runs them on every push on Ubuntu and Windows (Python 3.12) and on Python 3.9, the oldest supported version, then lints the code and validates the skill against the Agent Skills spec.
 
 ## Repo layout
 
