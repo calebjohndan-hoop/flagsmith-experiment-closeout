@@ -1,0 +1,41 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: tests (${{ matrix.os }}, Python ${{ matrix.python }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ["3.12"]
+        include:
+          - os: ubuntu-latest
+            python: "3.9"  # oldest version the skill supports
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Run the offline test suite
+        run: python -m unittest discover tests -v
+
+  validate:
+    name: lint and Agent Skills spec check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install checkers
+        run: python -m pip install pyflakes skills-ref
+      - name: Lint
+        run: python -m pyflakes skills demo tests
+      - name: Validate the skill against the Agent Skills spec
+        run: skills-ref validate skills/flagsmith-experiment-closeout
